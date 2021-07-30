@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
-const movieNamesJson = JSON.parse(fs.readFileSync(path.resolve(__dirname, "movies_titles.json"), "utf-8"));
-const movieNamesList = movieNamesJson.map((elem) => elem.title.normalize("NFD").replace(/[\u0300-\u036f`~!#$-@%^&*()|+=÷¿?;.:'"\s,<>{}[\]\\/]/gi, ""));
+const movieNamesJson = JSON.parse(fs.readFileSync(path.resolve(__dirname, "movie_names.json"), "utf-8"));
+const movieNamesList = movieNamesJson.map((elem) => elem.normalize("NFD").replace(/[\u0300-\u036f`~!#$-@%^&*()|+=÷¿?;.:'"\s,<>{}[\]\\/]/gi, ""));
 
 /**
  *
@@ -23,7 +23,7 @@ function movieNames(options) {
     let nameUsed;
     while (!rightSize) {
       nameUsed = generateRandomMovieName();
-      if (nameUsed !== "" && nameUsed.length <= options.maxLength) {
+      if (nameUsed.length <= options.maxLength) {
         rightSize = true;
       }
     }
